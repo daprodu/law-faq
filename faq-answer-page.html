@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Answer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            text-align: center;
+            font-size: 2.5em;
+        }
+
+        .answer-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .question {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .answer {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .breadcrumbs a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .related-questions {
+            margin-top: 40px;
+        }
+
+        .related-questions h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .related-questions ul {
+            list-style-type: none;
+        }
+
+        .related-questions li {
+            margin-bottom: 10px;
+        }
+
+        .related-questions a {
+            color: #3498db;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .related-questions a:hover {
+            background-color: #f0f0f0;
+            text-decoration: none;
+        }
+
+        .back-to-faq {
+            display: inline-block;
+            margin-top: 30px;
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .back-to-faq:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .question {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Home</a> &gt; <a href="index.html">FAQ</a> &gt; <span id="category-breadcrumb">Category</span> &gt; <span id="question-breadcrumb">Question</span>
+        </div>
+
+        <main class="answer-container">
+            <h2 class="question" id="question-title">Loading Question...</h2>
+            <div class="answer" id="answer-content">
+                <p>Loading answer content...</p>
+            </div>
+            <a href="index.html" class="back-to-faq">← Back to All FAQs</a>
+        </main>
+
+        <div class="related-questions">
+            <h3>Related Questions</h3>
+            <ul id="related-questions-list">
+                <!-- Related questions will be populated by JavaScript -->
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Company Name. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            const id = urlParams.get('id');
+
+            // Set breadcrumbs
+            document.getElementById('category-breadcrumb').textContent = formatCategoryName(category);
+
+            // FAQ data structure
+            const faqData = {
+                product: {
+                    name: "Product Information",
+                    questions: {
+                        materials: {
+                            title: "What materials are your products made from?",
+                            content: "Our products are crafted using premium, sustainable materials that are ethically sourced. We prioritize quality and durability while maintaining our commitment to environmental responsibility. Each product comes with detailed information about its specific materials.<br><br>We work with responsible suppliers who adhere to strict environmental and ethical standards. Many of our products use recycled materials where possible, and we're constantly exploring new sustainable options to reduce our environmental footprint.<br><br>For products containing wood, we ensure it comes from FSC-certified forests. Our metals are sourced from suppliers who follow responsible mining practices, and our textiles meet OEKO-TEX standards for safety."
+                        },
+                        customization: {
+                            title: "Do you offer customization options?",
+                            content: "Yes, we offer various customization options for most of our products. You can select colors, sizes, and in some cases, add personalized engravings or designs. To explore customization options, visit the product page or contact our customer service team for assistance with special requests.<br><br>Custom orders typically require an additional 5-7 business days for production. For bulk customization orders, please contact our business sales department for specialized assistance and potential volume discounts.<br><br>Please note that customized products are made specifically for you and therefore cannot be returned unless there's a manufacturing defect."
+                        },
+                        warranty: {
+                            title: "What is your product warranty policy?",
+                            content: "We stand behind the quality of our products with a comprehensive warranty policy. Most items come with a standard 1-year warranty against manufacturing defects. Premium products may include extended warranty options. For specific warranty information on your purchase, please refer to the product documentation or contact our support team.<br><br>Our warranty covers defects in materials and workmanship under normal use. It does not cover damage from misuse, accidents, or normal wear and tear. Some products have specific warranty conditions, which are clearly stated on their product pages.<br><br>To claim warranty service, you'll need to provide proof of purchase and a description of the defect. In most cases, we'll either repair, replace, or refund defective products at our discretion."
+                        },
+                        care: {
+                            title: "How do I care for and maintain your products?",
+                            content: "Proper care ensures the longevity of your purchase. Each product comes with specific care instructions tailored to its materials and construction. Generally, we recommend regular cleaning with appropriate products, avoiding extreme temperatures, and following any specific maintenance guidelines provided. For detailed care instructions, please refer to the product manual or visit our care guide section on the website.<br><br>For electronics, avoid exposure to water and extreme temperatures. Clean with a soft, dry cloth and remove batteries during long periods of disuse.<br><br>For textiles, check the specific washing instructions on the care label. Most items can be machine washed in cold water and air-dried to preserve their quality and appearance.<br><br>For wooden items, dust regularly with a soft cloth and use appropriate wood cleaner twice a year. Keep away from direct sunlight and use coasters to prevent water rings."
+                        }
+                    }
+                },
+                shipping: {
+                    name: "Shipping & Delivery",
+                    questions: {
+                        methods: {
+                            title: "What shipping methods do you offer?",
+                            content: "We offer several shipping options to meet your needs, including standard shipping (5-7 business days), expedited shipping (2-3 business days), and premium overnight delivery. International shipping is available to most countries with estimated delivery times of 7-14 business days, depending on the destination.<br><br>Standard shipping uses ground services for domestic orders and economy air mail for international orders. Expedited shipping uses priority air services for all destinations. Overnight delivery is available for most domestic addresses if ordered before 2 PM local time.<br><br>During checkout, you'll see all available shipping options for your location with accurate delivery estimates and costs."
+                        },
+                        cost: {
+                            title: "How much does shipping cost?",
+                            content: "Shipping costs vary based on your location, selected shipping method, and order value. We offer free standard shipping on all domestic orders over $50. For international orders, shipping costs are calculated at checkout based on weight, destination, and chosen delivery method. You can always view the exact shipping cost before finalizing your purchase.<br><br>For orders under $50, standard domestic shipping starts at $5.95. Expedited domestic shipping starts at $12.95, and overnight delivery starts at $24.95.<br><br>International shipping rates begin at $15.95 for standard shipping to Canada and Mexico, and $24.95 for other countries. Expedited international options start at $39.95."
+                        },
+                        tracking: {
+                            title: "How can I track my order?",
+                            content: "Once your order ships, you'll receive a confirmation email containing your tracking number and a link to monitor your delivery. You can also track your order by logging into your account on our website and visiting the 'Order History' section. Our tracking system provides real-time updates on your package's journey to your doorstep.<br><br>Tracking information typically becomes active within 24 hours after receiving your shipping confirmation. The frequency of status updates depends on the carrier and shipping method you've selected.<br><br>If you're experiencing issues with tracking or haven't received an update in more than 48 hours after the estimated shipping date, please contact our customer service team for assistance."
+                        },
+                        international: {
+                            title: "Do you ship to international addresses?",
+                            content: "Yes, we ship to most countries worldwide. International delivery typically takes 7-14 business days, depending on customs processing and local delivery services. Please note that international orders may be subject to import duties, taxes, and customs fees, which are the responsibility of the recipient. These charges vary by country and are not included in our shipping costs.<br><br>We currently ship to over 180 countries, with a few exceptions due to shipping restrictions or regulations. During checkout, you'll be able to see if your country is eligible for shipping.<br><br>International orders are typically shipped via DHL, FedEx, or local postal services depending on the destination. Tracking is provided for all international shipments."
+                        }
+                    }
+                },
+                returns: {
+                    name: "Returns & Exchanges",
+                    questions: {
+                        policy: {
+                            title: "What is your return policy?",
